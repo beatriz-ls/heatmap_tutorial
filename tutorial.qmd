@@ -1,0 +1,15 @@
+---
+title: "Mapas de Calor no R"
+author: "Beatriz Lima Silveira"
+output: html_document
+editor: visual
+---
+
+## Introdução
+
+Dentro do contexto da analise de dados, a necessidade de criar elementos visuais para representar e/ou resumir informações presentes em conjunto de dados permutou na criação de diversos tipos de representações gráficas, entre elas o mapa de calor. De forma geral, um mapa de calor utiliza um gradiente de cores para representar quantificamente uma determinada matriz.
+No R, há diversas maneiras de criar mapas de calor, e cada método ou pacote oferece diferentes funcionalidades e estilos, entretanto antes do avanço da computação já havia registros da utilização desse método de visualização de dados. No contexto histórico, um dos exemplos de utilização mais antigos é datado em 1873, quando Toussant Loua - um estatístico francês - usou matriz desenhadas a mão e coloridas para a visualização das estatísticas de indicadores sociais do distrito de paris[1]. 
+Neste tutorial, será explicado em que contexto optar por utilizar um mapa de calor, qual a natureza os dados devem ter, além de comparar três abordagens populares para a criação de mapas de calor no R: a função {base} heatmap, o pacote {ggplot2} e o pacote {pheatmap}. A prática será realizada com os dados do Observatório Obstétrico Brasileiro, mais especificamente de dados 
+
+
+
