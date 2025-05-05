@@ -4,6 +4,7 @@ library(readr) # baixar dados
 library(ggplot2) # gráficos estáticos
 library(pheatmap) # gráficos estáticos
 library(heatmaply) # gráficos estáticos
+library(tidyr)
 
 #####  dados -------------------------------------------------------------------
 
@@ -34,11 +35,15 @@ dataset_aux <- dados %>%
 
 # colocaando dados em formato de matriz
 
+# Transformando para formato largo
+matriz_dados <- dataset_aux %>%
+  pivot_wider(names_from = ESTADO, values_from = PORCENTAGEM_INCONSISTENTES)
+
 matriz_dados <- reshape2::dcast(dataset_aux, VARIAVEL ~ ESTADO, value.var = "PORCENTAGEM_INCONSISTENTES")
 
-rownames(matriz_dados) <- matriz_dados$VARIAVEL
+#rownames(matriz_dados) <- matriz_dados$VARIAVEL
 
-matriz_dados <- as.matrix(matriz_dados[,-1])
+#matriz_dados <- as.matrix(matriz_dados[,-1])
 
 ##### cosntruindo mapas de calor -----------------------------------------------
 
