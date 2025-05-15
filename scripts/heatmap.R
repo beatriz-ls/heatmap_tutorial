@@ -41,9 +41,9 @@ matriz_dados <- dataset_aux %>%
 
 matriz_dados <- reshape2::dcast(dataset_aux, VARIAVEL ~ ESTADO, value.var = "PORCENTAGEM_INCONSISTENTES")
 
-#rownames(matriz_dados) <- matriz_dados$VARIAVEL
+rownames(matriz_dados) <- matriz_dados$VARIAVEL
 
-#matriz_dados <- as.matrix(matriz_dados[,-1])
+matriz_dados <- as.matrix(matriz_dados[,-1])
 
 ##### cosntruindo mapas de calor -----------------------------------------------
 
@@ -65,11 +65,11 @@ ggplot(dataset_aux, aes( x = ESTADO, y = VARIAVEL,
 heatmap(matriz_dados,
         Rowv = NA,
         Colv = NA,
-        col = colorRampPalette(c("pink", "darkred"))(100),
+        col = viridis::viridis(100),
         scale = "none",
-        #xlab = "Estado",
-        # ylab = "Variável",
-        main = "Inconsistências no SIVEP-Gripe em 2022 (base)"
+        xlab = "Estado",
+        ylab = "",
+        main = "Inconsistências no SIVEP-Gripe em 2022 (stats)"
 )
 
 #### pheatmap ####
@@ -77,7 +77,7 @@ heatmap(matriz_dados,
 pheatmap(matriz_dados,
          cluster_rows = FALSE,
          cluster_cols = FALSE,
-         color = colorRampPalette(c("pink", "darkred"))(100),
+         color = viridis::viridis(100),
          fontsize = 8,
          main =  "Inconsistências no SIVEP-Gripe em 2022 (pheatmap)"
 )
