@@ -131,11 +131,11 @@ Para a construção de mapas de calor de forma simples, o R possui uma função 
 heatmap(matriz_dados,
         Rowv = NA,
         Colv = NA,
-        col = colorRampPalette(c("pink", "darkred"))(100),
+        col = viridis::viridis(100),
         scale = "none",
         xlab = "Estado",
-        ylab = "Variável",
-        main = "Inconsistências no SIVEP-Gripe em 2022 (base)"
+        ylab = "",
+        main = "Inconsistências no SIVEP-Gripe em 2022 (stats)"
 )
 ```
 
@@ -153,7 +153,7 @@ library(pheatmap)# chamando biblioteca
 pheatmap(matriz_dados,
          cluster_rows = FALSE,
          cluster_cols = FALSE,
-         color = colorRampPalette(c("pink", "darkred"))(100),
+         color = viridis::viridis(100),
          fontsize = 8,
          main =  "Inconsistências no SIVEP-Gripe em 2022 (pheatmap)"
 )
@@ -168,18 +168,18 @@ O `ggplot()` oferece uma grande flexibilidade para personalização gráfica e a
 ```{r, warning=FALSE}
 library(ggplot2) # chamando biblioteca
 
-ggplot(dataset_aux, aes(x = ESTADO, y = VARIAVEL,
-                                       fill = PORCENTAGEM_INCONSISTENTES)) +
+ggplot(dataset_aux, aes(x = ESTADO, y = VARIAVEL, fill = PORCENTAGEM_INCONSISTENTES)) +
   geom_tile() +
-  scale_fill_gradient(low = "pink",
-                      high = "darkred",
-                      name = "Porcentagem",
-                      labels = scales::percent) +
+  scale_fill_viridis_c(
+    name = "Porcentagem",
+    labels = scales::percent,
+    option = "D"
+  ) +
   theme_minimal() +
   labs(title = "Inconsistências no SIVEP-Gripe em 2022 (ggplot)")
 ```
 
-Neste código, **`aes()`** define as variáveis do eixo x e do eixo y. **`scale_fill_gradiente`** ajusta a escala de cores do preenchimento das células do mapa de calor. Ele define a cor inicial (**`low`**) como "pink" e a cor final (**`high`**) como "darkred". O argumento `name` define o rótulo da legenda de cores como "Porcentagem",`labels` especifica que os rótulos na legenda serão formatados como percentuais usando a função **`scales::percent`**. **`theme_minimal()`** define o tema do gráfico comom minimalista. **`labs()`** define o titulo do gráfico.
+Neste código, **`aes()`** define as variáveis do eixo x e do eixo y. scale_fill_viridis_c() ajusta a escala de cores do preenchimento das células do mapa de calor, utilizando a paleta perceptualmente uniforme da função viridis. O argumento option = "D" especifica a variação da paleta utilizada. O argumento name define o rótulo da legenda de cores como "Porcentagem" e labels formata os valores na legenda como percentuais usando a função scales::percent. theme_minimal() define o tema do gráfico como minimalista. labs() define o título do gráfico.
 
 **`ggplot()`** embora ofereça uma gama mais ampla de opções, não será de fácil utilização para pessoas que não tenham conhecimento prévio sobre a ferramenta. Dito isso, é interessante aprender ggplot2, pois é uma ferramenta que permite criar variados tipos de gráficos. No OObr, o aluno Pedro Brito apresentou um minicurso de ggplot2 em um workshop de Ciência de Dados, disponível neste [link](https://observatorioobstetricobr.org/publicacoes/oobr-realiza-workshop-de-ciencia-de-dados-em-parceria-com-a-constat/).
 
